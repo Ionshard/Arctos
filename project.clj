@@ -7,14 +7,15 @@
                  [secretary "1.2.3"]
                  [compojure "1.5.0"]
                  [yogthos/config "0.8"]
-                 [ring "1.4.0"]
-                 [http-kit "2.2.0"]]
+                 [ring "1.4.0" :exclusions [ring/ring-jetty-adapter]]
+                 [http-kit "2.2.0"]
+                 [org.danielsz/system "0.4.0"]]
 
   :plugins [[lein-cljsbuild "1.1.4"]]
 
   :min-lein-version "2.5.3"
 
-  :source-paths ["src/clj"]
+  :source-paths ["src/clj" "dev"]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
                                     "test/js"]
@@ -26,7 +27,8 @@
 
   :profiles
   {:dev
-   {:dependencies [[binaryage/devtools "0.8.2"]
+   {:source-paths ["dev/src/clj"]
+    :dependencies [[binaryage/devtools "0.8.2"]
                    [figwheel-sidecar "0.5.7"]
                    [com.cemerick/piggieback "0.2.1"]]
 
