@@ -1,13 +1,10 @@
 (ns arctos.handler
-  (:require [compojure.core :refer [GET defroutes]]
+  (:require [compojure.core :refer [GET routes]]
             [compojure.route :refer [resources]]
-            [ring.util.response :refer [resource-response]]
-            [ring.middleware.reload :refer [wrap-reload]]))
+            [ring.util.response :refer [resource-response]]))
 
-(defroutes routes
-  (GET "/" [] (resource-response "index.html" {:root "public"}))
-  (resources "/"))
-
-(def dev-handler (-> #'routes wrap-reload))
-
-(def handler routes)
+(defn app-routes
+  [system]
+  (routes
+   (GET "/" [] (resource-response "index.html" {:root "public"}))
+   (resources "/")))
