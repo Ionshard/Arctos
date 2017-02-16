@@ -25,16 +25,16 @@
 
   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
 
-  :profiles
-  {:dev
-   {:source-paths ["dev/src/clj"]
-    :dependencies [[binaryage/devtools "0.8.2"]
-                   [figwheel-sidecar "0.5.7"]
-                   [com.cemerick/piggieback "0.2.1"]]
+  :profiles {:dev {:source-paths ["dev/src/clj"]
+                   :dependencies [[binaryage/devtools "0.8.2"]
+                                  [figwheel-sidecar "0.5.7"]
+                                  [com.cemerick/piggieback "0.2.1"]]
 
-    :plugins      [[lein-figwheel "0.5.7"]
-                   [lein-doo "0.1.7"]]
-    }}
+                   :plugins [[lein-figwheel "0.5.7"]
+                             [lein-doo "0.1.7"]]}
+             :prod {:source-paths ["prod/src/clj"]
+                    :main arctos.server
+                    :aot [arctos.server]}}
 
   :cljsbuild
   {:builds
@@ -67,9 +67,6 @@
                     :optimizations :none}}
     ]}
 
-  :main arctos.server
-
-  :aot [arctos.server]
 
   :uberjar-name "arctos.jar"
 

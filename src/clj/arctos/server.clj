@@ -1,9 +1,11 @@
 (ns arctos.server
-  (:require [arctos.handler :refer [handler]]
-            [config.core :refer [env]]
-            [org.httpkit.server :refer [run-server]])
+  (:require [arctos.system :refer [prod-system]]
+            [system.repl :refer [set-init! start]])
   (:gen-class))
 
- (defn -main [& args]
-   (let [port (Integer/parseInt (or (env :port) "3000"))]
-     (run-server handler {:port port :join? false})))
+(defn -main
+  "Start the application"
+  [& args]
+  (println "Starting System")
+  (set-init! #'prod-system)
+  (start))
