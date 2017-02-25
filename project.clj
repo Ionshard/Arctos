@@ -9,7 +9,8 @@
                  [yogthos/config "0.8"]
                  [ring "1.4.0" :exclusions [ring/ring-jetty-adapter]]
                  [http-kit "2.2.0"]
-                 [org.danielsz/system "0.4.0"]]
+                 [org.danielsz/system "0.4.0"]
+                 [com.taoensso/sente "1.11.0"]]
 
   :plugins [[lein-cljsbuild "1.1.4"]]
 

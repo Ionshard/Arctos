@@ -1,13 +1,13 @@
 (ns arctos.core
-    (:require [reagent.core :as reagent]
-              [re-frame.core :as re-frame]
-              [re-frisk.core :refer [enable-re-frisk!]]
-              [arctos.events]
-              [arctos.subs]
-              [arctos.routes :as routes]
-              [arctos.views :as views]
-              [arctos.config :as config]))
-
+  (:require [arctos.events]
+            [arctos.subs]
+            [arctos.routes :as routes]
+            [arctos.views :as views]
+            [arctos.config :as config]
+            [arctos.websockets :as websockets]
+            [reagent.core :as reagent]
+            [re-frame.core :as re-frame]
+            [re-frisk.core :refer [enable-re-frisk!]]))
 
 (defn dev-setup []
   (when config/debug?
@@ -22,6 +22,7 @@
 
 (defn ^:export init []
   (routes/app-routes)
+  (websockets/event-loop)
   (re-frame/dispatch-sync [:initialize-db])
   (dev-setup)
   (mount-root))
