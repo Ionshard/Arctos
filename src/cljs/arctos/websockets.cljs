@@ -1,7 +1,8 @@
 (ns arctos.websockets
   (:require [com.stuartsierra.component :as component]
             [system.components.sente :refer [new-channel-socket-client]]
-            [taoensso.sente :as sente])
+            [taoensso.sente :as sente]
+            [re-frame.core :as re-frame])
   (:require-macros
    [cljs.core.async.macros :refer [go go-loop]]))
 
@@ -30,6 +31,9 @@
 
 (defmethod -event-msg-handler :chsk/recv
   [{:as ev-msg :keys [?data]}]
+  (case (first ?data)
+    :chat/add-message (re-frame/dispatch [:chat/add-message (second ?data)])
+    :else)
   (println "Push event from server: %s" ?data))
 
 (defmethod -event-msg-handler :chsk/handshake

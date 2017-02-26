@@ -24,6 +24,10 @@
   (defroute "/about" []
     (re-frame/dispatch [:set-active-panel :about-panel]))
 
+  (defroute "/chat" []
+    (re-frame/dispatch [:set-active-panel :chat-panel]))
+
+
 
   ;; --------------------
   (hook-browser-navigation!))

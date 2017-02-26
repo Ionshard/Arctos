@@ -11,3 +11,13 @@
  :active-panel
  (fn [db _]
    (:active-panel db)))
+
+(re-frame/reg-sub
+ :chat/messages
+ (fn [db _]
+   (get-in db [:chat :messages])))
+
+(re-frame/reg-sub
+ :chat/username
+ (fn [db _]
+   (get-in db [:chat :username])))
